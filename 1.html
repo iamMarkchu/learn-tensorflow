@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Echarts</title>
+  <script src="https://cdn.bootcss.com/echarts/3.8.5/echarts-en.common.min.js"></script>
+</head>
+<body>
+<div id="main" style="width: 600px;height:400px;"></div>
+</body>
+<script>
+  var myChart = echarts.init(document.getElementById('main'));
+  // 指定图表的配置项和数据
+  var dataAll = [
+    [
+      [1, 0],
+      [2, -1],
+      [3, -2],
+      [4, -3],
+    ]
+  ];
+
+  var markLineOpt = {
+    animation: false,
+    label: {
+        normal: {
+            formatter: '',
+            textStyle: {
+                align: 'right'
+            }
+        }
+    },
+    lineStyle: {
+        normal: {
+            type: 'solid'
+        }
+    },
+    tooltip: {
+        formatter: 'y = 0.5 * x + 3'
+    },
+    data: []
+  };
+
+  option = {
+    title: {
+        text: 'Anscombe\'s quartet',
+        x: 'center',
+        y: 0
+    },
+    grid: [
+        {x: '7%', y: '7%', width: '38%', height: '38%'}
+    ],
+    tooltip: {
+        formatter: 'Group {a}: ({c})'
+    },
+    xAxis: [
+      {gridIndex: 0, min: -15, max: 20},
+    ],
+    yAxis: [
+      {gridIndex: 0, min: -15, max: 15}
+    ],
+    series: [
+      {
+          name: 'I',
+          type: 'scatter',
+          xAxisIndex: 0,
+          yAxisIndex: 0,
+          data: dataAll[0],
+          markLine: markLineOpt
+      }
+    ]
+  };
+
+  // 使用刚指定的配置项和数据显示图表。
+  myChart.setOption(option);
+</script>
+</html>
